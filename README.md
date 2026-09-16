@@ -1,2 +1,217 @@
 # GrahitaCare
  Platform Kolaborasi Guru dan Orang Tua
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portal Pendampingan Tunagrahita Ringan - SLB</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-slate-50 text-slate-800 font-sans">
+    <!-- Navbar -->
+    <nav class="bg-indigo-600 text-white shadow-md sticky top-0 z-50">
+        <div class="max-w-7xl mx-auto px-4 py-3 flex justify-between items-center">
+            <h1 class="text-xl font-bold">Portal Orang Tua & SLB</h1>
+            <div id="nav-auth" class="flex items-center space-x-4">
+                <span id="user-display" class="hidden text-sm bg-indigo-700 px-3 py-1 rounded-full"></span>
+                <button onclick="toggleModal('loginModal')" id="login-btn-nav" class="bg-white text-indigo-600 px-4 py-1.5 rounded-lg text-sm font-semibold hover:bg-slate-100 transition">Login</button>
+                <button onclick="logout()" id="logout-btn-nav" class="hidden bg-rose-500 text-white px-4 py-1.5 rounded-lg text-sm font-semibold hover:bg-rose-600 transition">Logout</button>
+            </div>
+        </div>
+    </nav>
+    <!-- Main Container -->
+    <main class="max-w-7xl mx-auto px-4 py-8 space-y-12">
+        <!-- Hero Section -->
+        <section class="bg-white p-8 rounded-2xl shadow-sm border border-slate-100 text-center space-y-4">
+            <h2 class="text-3xl font-bold text-slate-900">Pusat Pendampingan & Koordinasi Orang Tua</h2>
+            <p class="text-slate-600 max-w-2xl mx-auto">Platform khusus untuk mendukung orang tua siswa tunagrahita ringan dalam mengoptimalkan aktivitas harian anak di rumah serta terhubung langsung dengan pihak sekolah.</p>
+        </section>
+        <!-- Kebutuhan Anak Grahita Ringan -->
+        <section class="bg-white p-8 rounded-2xl shadow-sm border border-slate-100 space-y-6">
+            <h3 class="text-2xl font-bold text-indigo-900 border-b pb-3">Karakteristik & Kebutuhan Anak Tunagrahita Ringan</h3>
+            <div class="grid md:grid-cols-3 gap-6">
+                <div class="bg-indigo-50 p-6 rounded-xl border border-indigo-100">
+                    <h4 class="font-bold text-indigo-900 mb-2">Aspek Akademik Dasar</h4>
+                    <p class="text-sm text-slate-600">Mampu belajar membaca, menulis, dan berhitung pada taraf sederhana (biasanya setara kelas 4 SD umum pada usia dewasa).</p>
+                </div>
+                <div class="bg-indigo-50 p-6 rounded-xl border border-indigo-100">
+                    <h4 class="font-bold text-indigo-900 mb-2">Kemandirian Sosial</h4>
+                    <p class="text-sm text-slate-600">Dapat dilatih untuk merawat diri sendiri (mandi, berpakaian, makan) serta berinteraksi sosial di lingkungan sekitar.</p>
+                </div>
+                <div class="bg-indigo-50 p-6 rounded-xl border border-indigo-100">
+                    <h4 class="font-bold text-indigo-900 mb-2">Kebutuhan Pendampingan</h4>
+                    <p class="text-sm text-slate-600">Membutuhkan pengulangan instruksi yang konsisten, kesabaran ekstra, serta kolaborasi erat antara orang tua dan guru di sekolah.</p>
+                </div>
+            </div>
+        </section>
+        <!-- Video Daily Activity Section -->
+        <section class="space-y-6">
+            <div class="flex justify-between items-center">
+                <h3 class="text-2xl font-bold text-slate-900">Video Daily Activity (Aktivitas Harian)</h3>
+                <span class="text-xs bg-amber-100 text-amber-800 px-3 py-1 rounded-full font-medium">Khusus Orang Tua</span>
+            </div>
+            <div id="video-grid" class="grid md:grid-cols-3 gap-6">
+                <!-- Video Item 1 -->
+                <div class="bg-white rounded-xl shadow-sm border border-slate-100 overflow-hidden flex flex-col">
+                    <div class="relative cursor-pointer group" onclick="openVideo('dQw4w9WgXcQ', 'Latihan Merapikan Tempat Tidur Mandiri')">
+                        <img src="https://img.youtube.com/vi/dQw4w9WgXcQ/hqdefault.jpg" alt="Thumbnail" class="w-full h-48 object-cover group-hover:opacity-90 transition">
+                        <div class="absolute inset-0 flex items-center justify-center">
+                            <div class="bg-indigo-600 text-white p-3 rounded-full shadow-lg">▶</div>
+                        </div>
+                    </div>
+                    <div class="p-5 flex-1 flex flex-col justify-between">
+                        <div>
+                            <h4 class="font-bold text-slate-900 mb-1">Latihan Merapikan Tempat Tidur Mandiri</h4>
+                            <p class="text-xs text-slate-500">Panduan praktis melatih motorik halus dan kemandirian anak di rumah.</p>
+                        </div>
+                        <button onclick="openVideo('dQw4w9WgXcQ', 'Latihan Merapikan Tempat Tidur Mandiri')" class="mt-4 w-full bg-slate-100 hover:bg-indigo-50 text-indigo-600 text-sm font-semibold py-2 rounded-lg transition">Putar Video</button>
+                    </div>
+                </div>
+                <!-- Video Item 2 -->
+                <div class="bg-white rounded-xl shadow-sm border border-slate-100 overflow-hidden flex flex-col">
+                    <div class="relative cursor-pointer group" onclick="openVideo('3JZ_D3ELwOQ', 'Kegiatan Mencuci Piring Sederhana')">
+                        <img src="https://img.youtube.com/vi/3JZ_D3ELwOQ/hqdefault.jpg" alt="Thumbnail" class="w-full h-48 object-cover group-hover:opacity-90 transition">
+                        <div class="absolute inset-0 flex items-center justify-center">
+                            <div class="bg-indigo-600 text-white p-3 rounded-full shadow-lg">▶</div>
+                        </div>
+                    </div>
+                    <div class="p-5 flex-1 flex flex-col justify-between">
+                        <div>
+                            <h4 class="font-bold text-slate-900 mb-1">Kegiatan Mencuci Piring Sederhana</h4>
+                            <p class="text-xs text-slate-500">Tahapan melatih kecakapan hidup (life skills) sehari-hari.</p>
+                        </div>
+                        <button onclick="openVideo('3JZ_D3ELwOQ', 'Kegiatan Mencuci Piring Sederhana')" class="mt-4 w-full bg-slate-100 hover:bg-indigo-50 text-indigo-600 text-sm font-semibold py-2 rounded-lg transition">Putar Video</button>
+                    </div>
+                </div>
+                <!-- Video Item 3 -->
+                <div class="bg-white rounded-xl shadow-sm border border-slate-100 overflow-hidden flex flex-col">
+                    <div class="relative cursor-pointer group" onclick="openVideo('jNQXAC9IVRw', 'Rutinitas Menggosok Gigi dengan Benar')">
+                        <img src="https://img.youtube.com/vi/jNQXAC9IVRw/hqdefault.jpg" alt="Thumbnail" class="w-full h-48 object-cover group-hover:opacity-90 transition">
+                        <div class="absolute inset-0 flex items-center justify-center">
+                            <div class="bg-indigo-600 text-white p-3 rounded-full shadow-lg">▶</div>
+                        </div>
+                    </div>
+                    <div class="p-5 flex-1 flex flex-col justify-between">
+                        <div>
+                            <h4 class="font-bold text-slate-900 mb-1">Rutinitas Menggosok Gigi dengan Benar</h4>
+                            <p class="text-xs text-slate-500">Metode visual membantu anak memahami kebersihan diri.</p>
+                        </div>
+                        <button onclick="openVideo('jNQXAC9IVRw', 'Rutinitas Menggosok Gigi dengan Benar')" class="mt-4 w-full bg-slate-100 hover:bg-indigo-50 text-indigo-600 text-sm font-semibold py-2 rounded-lg transition">Putar Video</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- Kontak Sekolah & Guru Kelas -->
+        <section class="bg-white p-8 rounded-2xl shadow-sm border border-slate-100 space-y-6">
+            <div class="flex justify-between items-center">
+                <div>
+                    <h3 class="text-2xl font-bold text-slate-900">Direktori Kontak Sekolah & Guru Kelas</h3>
+                    <p class="text-sm text-slate-500">Gunakan fitur ini untuk koordinasi atau melaporkan jika anak berhalangan hadir ke sekolah.</p>
+                </div>
+            </div>
+            <div class="grid md:grid-cols-2 gap-6">
+                <!-- Kontak 1 -->
+                <div class="p-5 border border-slate-200 rounded-xl flex justify-between items-center">
+                    <div>
+                        <h4 class="font-bold text-slate-900">Ibu Siti Rahma, S.Pd</h4>
+                        <p class="text-xs text-slate-500">Guru Kelas Tunagrahita Ringan (Kelas III)</p>
+                    </div>
+                    <a href="https://wa.me/6281234567890?text=Halo%20Ibu%20Siti,%20saya%20orang%20tua%20dari..." target="_blank" class="bg-emerald-600 hover:bg-emerald-700 text-white px-4 py-2 rounded-lg text-sm font-medium transition flex items-center space-x-2">
+                        <span>Hubungi Guru</span>
+                    </a>
+                </div>
+                <!-- Kontak 2 -->
+                <div class="p-5 border border-slate-200 rounded-xl flex justify-between items-center">
+                    <div>
+                        <h4 class="font-bold text-slate-900">Bapak Ahmad Fauzi, S.Pd</h4>
+                        <p class="text-xs text-slate-500">Guru Pendamping Khusus & Pembina Harian</p>
+                    </div>
+                    <a href="https://wa.me/6289876543210?text=Halo%20Pak%20Fauzi,%20saya%20ingin%20berkoordinasi..." target="_blank" class="bg-emerald-600 hover:bg-emerald-700 text-white px-4 py-2 rounded-lg text-sm font-medium transition flex items-center space-x-2">
+                        <span>Hubungi Guru</span>
+                    </a>
+                </div>
+            </div>
+        </section>
+    </main>
+    <!-- Modal Login -->
+    <div id="loginModal" class="fixed inset-0 bg-black/50 hidden flex items-center justify-center z-50 px-4">
+        <div class="bg-white p-8 rounded-2xl max-w-md w-full space-y-6">
+            <div class="flex justify-between items-center">
+                <h3 class="text-xl font-bold text-slate-900">Login Orang Tua / Guru</h3>
+                <button onclick="toggleModal('loginModal')" class="text-slate-400 hover:text-slate-600 text-lg">✕</button>
+            </div>
+            <form onsubmit="handleLogin(event)" class="space-y-4">
+                <div>
+                    <label class="block text-sm font-medium text-slate-700 mb-1">Email / Username</label>
+                    <input type="text" id="username" required class="w-full px-4 py-2 border border-slate-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500" placeholder="nama_pengguna">
+                </div>
+                <div>
+                    <label class="block text-sm font-medium text-slate-700 mb-1">Password</label>
+                    <input type="password" id="password" required class="w-full px-4 py-2 border border-slate-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500" placeholder="••••••••">
+                </div>
+                <button type="submit" class="w-full bg-indigo-600 hover:bg-indigo-700 text-white font-semibold py-2.5 rounded-lg transition">Masuk ke Sistem</button>
+            </form>
+        </div>
+    </div>
+    <!-- Modal Video Player -->
+    <div id="videoModal" class="fixed inset-0 bg-black/80 hidden flex items-center justify-center z-50 p-4">
+        <div class="bg-black rounded-2xl max-w-3xl w-full overflow-hidden relative shadow-2xl">
+            <div class="flex justify-between items-center p-4 bg-slate-900 text-white">
+                <h4 id="videoModalTitle" class="font-bold text-sm"></h4>
+                <button onclick="closeVideo()" class="text-slate-400 hover:text-white text-lg">✕</button>
+            </div>
+            <div class="relative pb-[56.25%] h-0">
+                <iframe id="youtubeIframe" class="absolute top-0 left-0 w-full h-full" src="" frameborder="0" allowfullscreen></iframe>
+            </div>
+        </div>
+    </div>
+    <!-- Script Interaksi -->
+    <script>
+        function toggleModal(modalId) {
+            const modal = document.getElementById(modalId);
+            modal.classList.toggle('hidden');
+        }
+        function handleLogin(e) {
+            e.preventDefault();
+            const username = document.getElementById('username').value;
+            localStorage.setItem('user', username);
+            updateAuthUI();
+            toggleModal('loginModal');
+        }
+        function logout() {
+            localStorage.removeItem('user');
+            updateAuthUI();
+        }
+        function updateAuthUI() {
+            const user = localStorage.getItem('user');
+            const userDisplay = document.getElementById('user-display');
+            const loginBtn = document.getElementById('login-btn-nav');
+            const logoutBtn = document.getElementById('logout-btn-nav');
+            if (user) {
+                userDisplay.innerText = `Halo, ${user}`;
+                userDisplay.classList.remove('hidden');
+                loginBtn.classList.add('hidden');
+                logoutBtn.classList.remove('hidden');
+            } else {
+                userDisplay.classList.add('hidden');
+                loginBtn.classList.remove('hidden');
+                logoutBtn.classList.add('hidden');
+            }
+        }
+        function openVideo(videoId, title) {
+            document.getElementById('videoModalTitle').innerText = title;
+            document.getElementById('youtubeIframe').src = `https://www.youtube.com/embed/${videoId}?autoplay=1`;
+            document.getElementById('videoModal').classList.remove('hidden');
+        }
+        function closeVideo() {
+            document.getElementById('youtubeIframe').src = '';
+            document.getElementById('videoModal').classList.add('hidden');
+        }
+        // Jalankan pengecekan auth saat dimuat
+        window.onload = function() {
+            updateAuthUI();
+        }
+    </script>
+</body>
+</html>
